@@ -1,8 +1,15 @@
 <?php
-require_once("classes/cardClasses.php");
+require_once("classes/indexClasses.php");
 if(isset($_POST['choice']))
 {
-    
+    new GameState();
+    header("Location:/");
+    exit;
+}
+
+if(isset($_POST['reset'])){
+    session_start();
+    session_destroy();
     header("Location:/");
     exit;
 }
@@ -20,7 +27,9 @@ if(isset($_POST['choice']))
     <h3>Est-ce que tu veux jouer?</h3>
     <input type="radio" name="choice" value="non" checked>Non<br>
     <input type="radio" name="choice" value="yes" checked>Oui<br>
-    <input type="submit" value="OK">
+    <input type="submit" value="OK"><br><br>
+
+    <input type="submit" name="reset" value="Reset">
 </form>
 </body>
 </html>
