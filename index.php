@@ -3,7 +3,7 @@ require_once("classes/cardClasses.php");
 if(isset($_POST['choice']))
 {
     
-    //header("Location:/");
+    header("Location:/");
     exit;
 }
 
