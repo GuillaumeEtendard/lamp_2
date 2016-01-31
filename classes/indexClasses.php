@@ -1,6 +1,6 @@
 <?php
 
-    class GameState{
-        protected $hand = 2;//stocke cartes en main, initialisé à 2
-        protected $tirage;//choix du joueur
-    }
+class GameState{
+        protected $hand;//stocke cartes en main
+        protected $choice;//choix du joueur
+}
