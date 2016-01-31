@@ -1,70 +1,26 @@
 <?php
-
-class Deck {
-    private $cards;
-    public function __construct()
-    {
-        $this->cards = [];
-        $faces = range(0,10);
-        $faces = array_merge($faces,["COEUR","PIQUE","CARREAU","TREFLE"]);
-        $colors = ["ROUGE","NOIR"];
-
-        foreach ($colors as $color)
-        {
-            foreach($faces as $face)
-            {
-                $this->cards[] = new Card($color,$face);
-            }
-        }
-    }
-
-    public function shuffle()
-    {
-        shuffle($this->cards);
-        return $this;
-    }
-
-    public function deal($n = 1)
-    {
-        $cards =array_splice($this->cards, 0, $n);
-        return $cards;
-    }
+require_once("classes/cardClasses.php");
+if(isset($_POST['choice']))
+{
+    
+    //header("Location:/");
+    exit;
 }
 
-$d = new Deck();
-list ($carte) = $d->shuffle()->deal(1);
-echo $carte;
+?>
 
-class Card{
-
-    private $face,$color;
-
-    public function __construct($face,$color){
-        $this->face = $face;
-        $this->color = $color;
-    }
-
-    public function getFace(){
-        return $this->face;
-    }
-
-    public function getColor(){
-        return $this->color;
-    }
-
-    public function getValue()
-    {
-        if(is_int($this->face))
-        {
-            return $this->face;
-        }else
-        {
-            return 10;
-        }
-    }
-
-    public function __toString()
-    {
-        return $this->face." de ".$this->color;
-    }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    <h3>Est-ce que tu veux jouer?</h3>
+    <input type="radio" name="choice" value="non" checked>Non<br>
+    <input type="radio" name="choice" value="yes" checked>Oui<br>
+    <input type="submit" value="OK">
+</form>
+</body>
+</html>

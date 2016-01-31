@@ -1,67 +1,19 @@
 <?php
 
-class Card{
-  
-  private $face,$color;
+require_once("classes/cardClasses.php");
 
-  public function __construct($color,$face){
-    $this->face = $face;
-    $this->color = $color;
-  }
+//SCENARIO 1
+$deck = new Deck();
+$deck->shuffle();
+$bank = new Bank();
+$bank->take($deck->deal(2)); //tire 2 cartes du deck, la banque les prends
 
-  public function getFace(){
-    return $this->face;
-  }
-  public function getColor(){
-    return $this->color;
-  }
 
-  public function getValue(){
-    if(is_int($this->face)){
-      return $this->face;
-    }else{
-      return 10;
-    }
-  }
-
-  public function __toString(){
-    return $this->face." de ".$this->color;
-  }
+while( $bank->getHandValue() < 17){
+  $bank->take($deck->deal(1));
 }
-
-//$asDeCoeur = new Card("HEART", 1);
-//echo $asDeCoeur;
-
-class Deck{
-  private $cards;
-  public function __construct(){
-    $this->cards = [];
-    $faces = range(1,10);
-    $faces = array_merge($faces,["Jack","Queen","King"]);
-    $colors = ["HEART","CLUB","DIAMOND","SPADE"];
-
-    foreach($colors as $color){
-      foreach($faces as $face){
-        $this->cards[] = new Card($color,$face);
-      }
-    }
-  }
-
-  public function shuffle(){
-    shuffle($this->cards);
-    return $this;
-  }
-
-  public function deal($n = 1){
-    $cards = array_splice($this->cards, 0, $n);
-    return $cards;
-  }
+if($bank->getHandValue() > 21){
+  echo "La banque perd ".$bank->getHandValue();
+}else{
+  echo "La banque a ".$bank->getHandValue();
 }
-
-$d = new Deck();
-list($carte) = $d->shuffle()->deal(1);
-
-echo $carte;
-
-
-
