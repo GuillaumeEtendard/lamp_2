@@ -1,5 +1,7 @@
 <?php
 
+//Intro To Object
+
 class Animal{
   protected $espece,$nom,$vitesse;
 
