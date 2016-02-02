@@ -3,15 +3,12 @@ session_start();
 require_once("classes/indexClasses.php");
 require_once("classes/cardClasses.php");
 
+$deck = new Deck();
+$deck->shuffle();
+$player = new Bank();
+$player->take($deck->deal(2)); //Le joueur se voit distribué 2 cartes
 
-    $deck = new Deck();
-    $deck->shuffle();
-    $player = new Bank();
-    $player->take($deck->deal(2)); //Le joueur se voit distribué 2 cartes
-
-    echo "Tu as tiré 2 cartes et tu as ".$player->getHandValue();
-
-
+echo "Tu as tiré 2 cartes et tu as ".$player->getHandValue();
 
 if(isset($_POST['choice'])){
 
