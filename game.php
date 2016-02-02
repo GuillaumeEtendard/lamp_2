@@ -29,6 +29,7 @@ if(isset($_POST['choice'])){
 }
 
 if(isset($_POST['pass'])){
+    $deck = new Deck();
     $deck->shuffle();
 }
 
